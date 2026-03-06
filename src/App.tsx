@@ -1,7 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Layout } from "@/components/layout/Layout";
 
 function App() {
-  return <Box></Box>;
+  return (
+    <Layout>
+      <></>
+    </Layout>
+  );
 }
 
 export default App;

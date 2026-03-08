@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { useSwapiResource, useSwapiResources } from "@/hooks/useSwapiResource";
 import { createQueryWrapper } from "@/test/utils";
-import { mockPlanet, mockFilm } from "@/test/fixtures";
+import { mockPlanet } from "@/test/fixtures";
 
 vi.mock("@/lib/swapi");
 import { fetchSwapiResource } from "@/lib/swapi";
@@ -35,7 +35,9 @@ describe("useSwapiResource", () => {
   });
 
   it("returns an error on failed fetch", async () => {
-    mockedFetch.mockRejectedValue(new Error("SWAPI request failed: 404 Not Found"));
+    mockedFetch.mockRejectedValue(
+      new Error("SWAPI request failed: 404 Not Found"),
+    );
 
     const { result } = renderHook(
       () => useSwapiResource("https://swapi.info/api/planets/1/"),
@@ -50,7 +52,11 @@ describe("useSwapiResource", () => {
 describe("useSwapiResources", () => {
   it("returns one result per url", () => {
     const { result } = renderHook(
-      () => useSwapiResources(["https://swapi.info/api/planets/1/", "https://swapi.info/api/films/1/"]),
+      () =>
+        useSwapiResources([
+          "https://swapi.info/api/planets/1/",
+          "https://swapi.info/api/films/1/",
+        ]),
       { wrapper: createQueryWrapper() },
     );
 
@@ -58,10 +64,9 @@ describe("useSwapiResources", () => {
   });
 
   it("returns an empty array when no urls are provided", () => {
-    const { result } = renderHook(
-      () => useSwapiResources([]),
-      { wrapper: createQueryWrapper() },
-    );
+    const { result } = renderHook(() => useSwapiResources([]), {
+      wrapper: createQueryWrapper(),
+    });
 
     expect(result.current).toHaveLength(0);
   });

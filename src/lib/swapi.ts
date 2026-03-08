@@ -11,3 +11,15 @@ export async function fetchSwapiList<T>(url: SwapiUrl): Promise<T[]> {
 
   return response.json();
 }
+
+export async function fetchSwapiResource<T>(url: string): Promise<T> {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(
+      `SWAPI request failed: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  return response.json();
+}

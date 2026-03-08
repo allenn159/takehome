@@ -9,9 +9,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box minH="100vh">
       <Header />
-      <Box as="main" px="6" py="8">
-        {children}
-      </Box>
+      <Box as="main">{children}</Box>
     </Box>
   );
 }

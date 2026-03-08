@@ -12,7 +12,7 @@ export function StarWarsExplorer() {
   return (
     <Tabs.Root
       value={activeTab}
-      paddingX={6}
+      paddingX={4}
       onValueChange={(details) => setActiveTab(details.value as TabValue)}
     >
       <Tabs.List>

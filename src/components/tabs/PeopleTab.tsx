@@ -1,12 +1,11 @@
 import { Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useSwapi } from "@/hooks/useSwapi";
 import { PersonCard } from "@/components/cards/PersonCard";
+import { SWAPI_URLS } from "@/constants/swapi";
 import type { Person } from "@/types/swapi";
 
 export function PeopleTab() {
-  const { data, isLoading, error } = useSwapi<Person>(
-    "https://swapi.info/api/people",
-  );
+  const { data, isLoading, error } = useSwapi<Person>(SWAPI_URLS.people);
 
   if (isLoading) return <Flex justify="center" align="center" py={12}><Spinner /></Flex>;
   if (error) return <Flex justify="center" align="center" py={12}><Text color="red.500">{error.message}</Text></Flex>;

@@ -1,12 +1,11 @@
 import { Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useSwapi } from "@/hooks/useSwapi";
 import { StarshipCard } from "@/components/cards/StarshipCard";
+import { SWAPI_URLS } from "@/constants/swapi";
 import type { Starship } from "@/types/swapi";
 
 export function StarshipsTab() {
-  const { data, isLoading, error } = useSwapi<Starship>(
-    "https://swapi.info/api/starships",
-  );
+  const { data, isLoading, error } = useSwapi<Starship>(SWAPI_URLS.starships);
 
   if (isLoading) return <Flex justify="center" align="center" py={12}><Spinner /></Flex>;
   if (error) return <Flex justify="center" align="center" py={12}><Text color="red.500">{error.message}</Text></Flex>;

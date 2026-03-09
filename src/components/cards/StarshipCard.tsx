@@ -18,8 +18,8 @@ function StarshipDetails({ starship }: { starship: Starship }) {
 
   if (isLoading)
     return (
-      <Flex justify="center" py={4}>
-        <Spinner size="sm" />
+      <Flex justify="center" py={4} role="status" aria-label="Loading details">
+        <Spinner size="sm" aria-hidden="true" />
       </Flex>
     );
 
@@ -109,7 +109,11 @@ export function StarshipCard({ starship }: StarshipCardProps) {
       onOpenChange={(details) => setOpen(details.open)}
     >
       <Box borderWidth="1px" borderRadius="md" p={4}>
-        <Collapsible.Trigger width="100%" cursor="pointer">
+        <Collapsible.Trigger
+          width="100%"
+          cursor="pointer"
+          aria-label={`${open ? "Collapse" : "Expand"} details for ${starship.name}`}
+        >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
               <Text fontWeight="semibold">{starship.name}</Text>
@@ -117,7 +121,7 @@ export function StarshipCard({ starship }: StarshipCardProps) {
                 Model: {starship.model} · Class: {starship.starship_class}
               </Text>
             </Box>
-            {open ? <FiChevronUp /> : <FiChevronDown />}
+            {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
           </Flex>
         </Collapsible.Trigger>
         <Collapsible.Content>

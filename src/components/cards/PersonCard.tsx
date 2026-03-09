@@ -32,8 +32,8 @@ function PersonDetails({ person }: { person: Person }) {
 
   if (isLoading)
     return (
-      <Flex justify="center" py={4}>
-        <Spinner size="sm" />
+      <Flex justify="center" py={4} role="status" aria-label="Loading details">
+        <Spinner size="sm" aria-hidden="true" />
       </Flex>
     );
 
@@ -133,7 +133,11 @@ export function PersonCard({ person }: PersonCardProps) {
       onOpenChange={(details) => setOpen(details.open)}
     >
       <Box borderWidth="1px" borderRadius="md" p={4}>
-        <Collapsible.Trigger width="100%" cursor="pointer">
+        <Collapsible.Trigger
+          width="100%"
+          cursor="pointer"
+          aria-label={`${open ? "Collapse" : "Expand"} details for ${person.name}`}
+        >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
               <Text fontWeight="semibold">{person.name}</Text>
@@ -141,7 +145,7 @@ export function PersonCard({ person }: PersonCardProps) {
                 Birth Year: {person.birth_year} · Gender: {person.gender}
               </Text>
             </Box>
-            {open ? <FiChevronUp /> : <FiChevronDown />}
+            {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
           </Flex>
         </Collapsible.Trigger>
         <Collapsible.Content>

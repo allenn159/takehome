@@ -14,19 +14,19 @@ export function PeopleTab({ searchTerm }: PeopleTabProps) {
 
   if (isLoading)
     return (
-      <Flex justify="center" align="center" py={12}>
-        <Spinner />
+      <Flex justify="center" align="center" py={12} role="status" aria-live="polite" aria-label="Loading people">
+        <Spinner aria-hidden="true" />
       </Flex>
     );
   if (error)
     return (
-      <Flex justify="center" align="center" py={12}>
+      <Flex justify="center" align="center" py={12} role="alert" aria-live="assertive">
         <Text color="red.500">{error.message}</Text>
       </Flex>
     );
   if (!data)
     return (
-      <Flex justify="center" align="center" py={12}>
+      <Flex justify="center" align="center" py={12} role="status" aria-live="polite">
         <Text color="fg.muted">No results available</Text>
       </Flex>
     );
@@ -34,9 +34,9 @@ export function PeopleTab({ searchTerm }: PeopleTabProps) {
   const filtered = filterByName(data, searchTerm);
 
   return (
-    <Stack mt={4} gap={3}>
+    <Stack mt={4} gap={3} aria-live="polite">
       {filtered.length === 0 ? (
-        <Text color="fg.muted" textAlign="center" py={8}>
+        <Text color="fg.muted" textAlign="center" py={8} role="status">
           No results for "{searchTerm}"
         </Text>
       ) : (

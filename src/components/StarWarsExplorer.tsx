@@ -29,6 +29,7 @@ export function StarWarsExplorer() {
         placeholder="Search by name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        aria-label="Search by name"
       />
       <Tabs.Content value="people">
         {activeTab === "people" && <PeopleTab searchTerm={searchTerm} />}

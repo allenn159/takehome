@@ -111,6 +111,25 @@ export const mockVehicle: Vehicle = {
   url: "https://swapi.info/api/vehicles/4/",
 };
 
-export const mockPeople: Person[] = [mockPerson];
+export const mockPersonTwo: Person = {
+  name: "Darth Vader",
+  height: "202",
+  mass: "136",
+  hair_color: "none",
+  skin_color: "white",
+  eye_color: "yellow",
+  birth_year: "41.9BBY",
+  gender: "male",
+  homeworld: "https://swapi.info/api/planets/1/",
+  films: ["https://swapi.info/api/films/1/"],
+  species: [],
+  vehicles: [],
+  starships: ["https://swapi.info/api/starships/13/"],
+  created: "2014-12-10T15:18:20.704000Z",
+  edited: "2014-12-20T21:17:50.313000Z",
+  url: "https://swapi.info/api/people/4/",
+};
+
+export const mockPeople: Person[] = [mockPerson, mockPersonTwo];
 export const mockPlanets: Planet[] = [mockPlanet];
 export const mockStarships: Starship[] = [mockStarship];

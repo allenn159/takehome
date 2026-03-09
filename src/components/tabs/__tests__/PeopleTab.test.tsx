@@ -16,7 +16,7 @@ describe("PeopleTab", () => {
     mockedUseSwapi.mockReturnValue(
       mockQueryResult<Person[]>({ isLoading: true, isPending: true, status: "pending" }),
     );
-    renderWithProviders(<PeopleTab />);
+    renderWithProviders(<PeopleTab searchTerm="" />);
     expect(document.querySelector(".chakra-spinner")).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe("PeopleTab", () => {
         error: new Error("Something went wrong"),
       }),
     );
-    renderWithProviders(<PeopleTab />);
+    renderWithProviders(<PeopleTab searchTerm="" />);
     expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
   });
 
@@ -35,7 +35,7 @@ describe("PeopleTab", () => {
     mockedUseSwapi.mockReturnValue(
       mockQueryResult<Person[]>({ data: undefined }),
     );
-    renderWithProviders(<PeopleTab />);
+    renderWithProviders(<PeopleTab searchTerm="" />);
     expect(screen.getByText(/no results available/i)).toBeInTheDocument();
   });
 
@@ -43,7 +43,36 @@ describe("PeopleTab", () => {
     mockedUseSwapi.mockReturnValue(
       mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
     );
-    renderWithProviders(<PeopleTab />);
+    renderWithProviders(<PeopleTab searchTerm="" />);
     expect(screen.getByText("Luke Skywalker")).toBeInTheDocument();
+    expect(screen.getByText("Darth Vader")).toBeInTheDocument();
+  });
+
+  it("filters people by search term", () => {
+    mockedUseSwapi.mockReturnValue(
+      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+    );
+    renderWithProviders(<PeopleTab searchTerm="luke" />);
+    expect(screen.getByText("Luke Skywalker")).toBeInTheDocument();
+    expect(screen.queryByText("Darth Vader")).not.toBeInTheDocument();
+  });
+
+  it("is case-insensitive when filtering", () => {
+    mockedUseSwapi.mockReturnValue(
+      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+    );
+    renderWithProviders(<PeopleTab searchTerm="DARTH" />);
+    expect(screen.getByText("Darth Vader")).toBeInTheDocument();
+    expect(screen.queryByText("Luke Skywalker")).not.toBeInTheDocument();
+  });
+
+  it("shows no results message when search term matches nothing", () => {
+    mockedUseSwapi.mockReturnValue(
+      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+    );
+    renderWithProviders(<PeopleTab searchTerm="zzznomatch" />);
+    expect(screen.getByText(/no results for/i)).toBeInTheDocument();
+    expect(screen.queryByText("Luke Skywalker")).not.toBeInTheDocument();
+    expect(screen.queryByText("Darth Vader")).not.toBeInTheDocument();
   });
 });

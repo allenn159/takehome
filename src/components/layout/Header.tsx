@@ -7,7 +7,7 @@ export function Header() {
 
   return (
     <Flex as="header" px="6" py="4" align="center" justify="space-between">
-      <Text fontWeight="bold" fontSize="xl">
+      <Text fontWeight="bold" fontSize="2xl">
         Star Wars Explorer
       </Text>
       <IconButton

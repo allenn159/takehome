@@ -1,11 +1,22 @@
 import { useState } from "react";
-import { Box, Collapsible, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Collapsible, Flex, Separator, Spinner, Text } from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResources } from "@/hooks/useSwapiResource";
 import type { Film, Person, Starship } from "@/types/swapi";
 
 interface StarshipCardProps {
   starship: Starship;
+}
+
+function StatCell({ label, value }: { label: string; value: string }) {
+  return (
+    <Box>
+      <Text fontSize="2xs" color="fg.muted" fontWeight="medium" textTransform="uppercase" letterSpacing="wide">
+        {label}
+      </Text>
+      <Text fontSize="md">{value}</Text>
+    </Box>
+  );
 }
 
 function StarshipDetails({ starship }: { starship: Starship }) {
@@ -35,67 +46,17 @@ function StarshipDetails({ starship }: { starship: Starship }) {
       .join(", ") || "None";
 
   return (
-    <Box mt={3} display="grid" gridTemplateColumns="1fr 1fr" gap={2}>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Manufacturer:
-        </Text>{" "}
-        {starship.manufacturer}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Cost:
-        </Text>{" "}
-        {starship.cost_in_credits} credits
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Length:
-        </Text>{" "}
-        {starship.length}m
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Crew:
-        </Text>{" "}
-        {starship.crew}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Passengers:
-        </Text>{" "}
-        {starship.passengers}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Hyperdrive:
-        </Text>{" "}
-        {starship.hyperdrive_rating}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          MGLT:
-        </Text>{" "}
-        {starship.MGLT}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Cargo:
-        </Text>{" "}
-        {starship.cargo_capacity}kg
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Pilots:
-        </Text>{" "}
-        {pilotNames}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Films:
-        </Text>{" "}
-        {filmTitles}
-      </Text>
+    <Box mt={4} display="grid" gridTemplateColumns="1fr 1fr" gap={4}>
+      <StatCell label="Manufacturer" value={starship.manufacturer} />
+      <StatCell label="Cost" value={`${starship.cost_in_credits} credits`} />
+      <StatCell label="Length" value={`${starship.length}m`} />
+      <StatCell label="Crew" value={starship.crew} />
+      <StatCell label="Passengers" value={starship.passengers} />
+      <StatCell label="Hyperdrive" value={starship.hyperdrive_rating} />
+      <StatCell label="MGLT" value={starship.MGLT} />
+      <StatCell label="Cargo" value={`${starship.cargo_capacity}kg`} />
+      <StatCell label="Pilots" value={pilotNames} />
+      <StatCell label="Films" value={filmTitles} />
     </Box>
   );
 }
@@ -108,7 +69,14 @@ export function StarshipCard({ starship }: StarshipCardProps) {
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
     >
-      <Box borderWidth="1px" borderRadius="md" p={4}>
+      <Box
+        borderWidth="1px"
+        borderRadius="xl"
+        p={4}
+        boxShadow="sm"
+        transition="box-shadow 0.2s"
+        _hover={{ boxShadow: "md" }}
+      >
         <Collapsible.Trigger
           width="100%"
           cursor="pointer"
@@ -116,16 +84,23 @@ export function StarshipCard({ starship }: StarshipCardProps) {
         >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
-              <Text fontWeight="semibold">{starship.name}</Text>
+              <Text fontWeight="semibold" fontSize="lg">{starship.name}</Text>
               <Text fontSize="sm" color="fg.muted">
                 Model: {starship.model} · Class: {starship.starship_class}
               </Text>
             </Box>
-            {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+            <Box color="fg.muted">
+              {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+            </Box>
           </Flex>
         </Collapsible.Trigger>
         <Collapsible.Content>
-          {open && <StarshipDetails starship={starship} />}
+          {open && (
+            <>
+              <Separator mt={3} />
+              <StarshipDetails starship={starship} />
+            </>
+          )}
         </Collapsible.Content>
       </Box>
     </Collapsible.Root>

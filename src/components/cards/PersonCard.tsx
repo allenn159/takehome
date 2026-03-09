@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Collapsible, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Collapsible, Flex, Separator, Spinner, Text } from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResource, useSwapiResources } from "@/hooks/useSwapiResource";
 import type {
@@ -13,6 +13,17 @@ import type {
 
 interface PersonCardProps {
   person: Person;
+}
+
+function StatCell({ label, value }: { label: string; value: string }) {
+  return (
+    <Box>
+      <Text fontSize="2xs" color="fg.muted" fontWeight="medium" textTransform="uppercase" letterSpacing="wide">
+        {label}
+      </Text>
+      <Text fontSize="md">{value}</Text>
+    </Box>
+  );
 }
 
 function PersonDetails({ person }: { person: Person }) {
@@ -59,67 +70,17 @@ function PersonDetails({ person }: { person: Person }) {
       .join(", ") || "None";
 
   return (
-    <Box mt={3} display="grid" gridTemplateColumns="1fr 1fr" gap={2}>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Height:
-        </Text>{" "}
-        {person.height}cm
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Mass:
-        </Text>{" "}
-        {person.mass}kg
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Hair:
-        </Text>{" "}
-        {person.hair_color}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Eyes:
-        </Text>{" "}
-        {person.eye_color}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Skin:
-        </Text>{" "}
-        {person.skin_color}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Homeworld:
-        </Text>{" "}
-        {homeworld?.name ?? "—"}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Species:
-        </Text>{" "}
-        {speciesNames}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Films:
-        </Text>{" "}
-        {filmTitles}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Vehicles:
-        </Text>{" "}
-        {vehicleNames}
-      </Text>
-      <Text fontSize="sm">
-        <Text as="span" fontWeight="medium">
-          Starships:
-        </Text>{" "}
-        {starshipNames}
-      </Text>
+    <Box mt={4} display="grid" gridTemplateColumns="1fr 1fr" gap={4}>
+      <StatCell label="Height" value={`${person.height}cm`} />
+      <StatCell label="Mass" value={`${person.mass}kg`} />
+      <StatCell label="Hair" value={person.hair_color} />
+      <StatCell label="Eyes" value={person.eye_color} />
+      <StatCell label="Skin" value={person.skin_color} />
+      <StatCell label="Homeworld" value={homeworld?.name ?? "—"} />
+      <StatCell label="Species" value={speciesNames} />
+      <StatCell label="Films" value={filmTitles} />
+      <StatCell label="Vehicles" value={vehicleNames} />
+      <StatCell label="Starships" value={starshipNames} />
     </Box>
   );
 }
@@ -132,7 +93,14 @@ export function PersonCard({ person }: PersonCardProps) {
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
     >
-      <Box borderWidth="1px" borderRadius="md" p={4}>
+      <Box
+        borderWidth="1px"
+        borderRadius="xl"
+        p={4}
+        boxShadow="sm"
+        transition="box-shadow 0.2s"
+        _hover={{ boxShadow: "md" }}
+      >
         <Collapsible.Trigger
           width="100%"
           cursor="pointer"
@@ -140,20 +108,27 @@ export function PersonCard({ person }: PersonCardProps) {
         >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
-              <Text fontWeight="semibold">{person.name}</Text>
+              <Text fontWeight="semibold" fontSize="lg">{person.name}</Text>
               <Text fontSize="sm" color="fg.muted">
                 Birth Year: {person.birth_year} · Gender: {person.gender}
               </Text>
             </Box>
-            {open ? (
-              <FiChevronUp aria-hidden="true" />
-            ) : (
-              <FiChevronDown aria-hidden="true" />
-            )}
+            <Box color="fg.muted">
+              {open ? (
+                <FiChevronUp aria-hidden="true" />
+              ) : (
+                <FiChevronDown aria-hidden="true" />
+              )}
+            </Box>
           </Flex>
         </Collapsible.Trigger>
         <Collapsible.Content>
-          {open && <PersonDetails person={person} />}
+          {open && (
+            <>
+              <Separator mt={3} />
+              <PersonDetails person={person} />
+            </>
+          )}
         </Collapsible.Content>
       </Box>
     </Collapsible.Root>

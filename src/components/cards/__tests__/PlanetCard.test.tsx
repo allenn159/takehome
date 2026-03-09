@@ -25,7 +25,13 @@ describe("PlanetCard", () => {
 
   it("shows a spinner while related data is loading", async () => {
     const user = userEvent.setup();
-    mockedUseSwapiResources.mockReturnValue([mockQueryResult<Person>({ isLoading: true, isPending: true, status: "pending" })]);
+    mockedUseSwapiResources.mockReturnValue([
+      mockQueryResult<Person>({
+        isLoading: true,
+        isPending: true,
+        status: "pending",
+      }),
+    ]);
 
     renderWithProviders(<PlanetCard planet={mockPlanet} />);
     await user.click(screen.getByText("Tatooine"));
@@ -36,8 +42,20 @@ describe("PlanetCard", () => {
   it("shows related data when loaded", async () => {
     const user = userEvent.setup();
     mockedUseSwapiResources
-      .mockReturnValueOnce([mockQueryResult<Person>({ data: mockPerson, isSuccess: true, status: "success" })])
-      .mockReturnValueOnce([mockQueryResult<Film>({ data: mockFilm, isSuccess: true, status: "success" })]);
+      .mockReturnValueOnce([
+        mockQueryResult<Person>({
+          data: mockPerson,
+          isSuccess: true,
+          status: "success",
+        }),
+      ])
+      .mockReturnValueOnce([
+        mockQueryResult<Film>({
+          data: mockFilm,
+          isSuccess: true,
+          status: "success",
+        }),
+      ]);
 
     renderWithProviders(<PlanetCard planet={mockPlanet} />);
     await user.click(screen.getByText("Tatooine"));

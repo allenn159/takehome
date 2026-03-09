@@ -14,10 +14,9 @@ describe("useSwapi", () => {
   it("starts in a loading state", () => {
     mockedFetch.mockResolvedValue(new Promise(() => {}) as never); // never resolves
 
-    const { result } = renderHook(
-      () => useSwapi(SWAPI_URLS.people),
-      { wrapper: createQueryWrapper() },
-    );
+    const { result } = renderHook(() => useSwapi(SWAPI_URLS.people), {
+      wrapper: createQueryWrapper(),
+    });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toBeUndefined();
@@ -26,22 +25,22 @@ describe("useSwapi", () => {
   it("returns data on successful fetch", async () => {
     mockedFetch.mockResolvedValue(mockPeople as never);
 
-    const { result } = renderHook(
-      () => useSwapi(SWAPI_URLS.people),
-      { wrapper: createQueryWrapper() },
-    );
+    const { result } = renderHook(() => useSwapi(SWAPI_URLS.people), {
+      wrapper: createQueryWrapper(),
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual(mockPeople);
   });
 
   it("returns an error on failed fetch", async () => {
-    mockedFetch.mockRejectedValue(new Error("SWAPI request failed: 404 Not Found"));
-
-    const { result } = renderHook(
-      () => useSwapi(SWAPI_URLS.people),
-      { wrapper: createQueryWrapper() },
+    mockedFetch.mockRejectedValue(
+      new Error("SWAPI request failed: 404 Not Found"),
     );
+
+    const { result } = renderHook(() => useSwapi(SWAPI_URLS.people), {
+      wrapper: createQueryWrapper(),
+    });
 
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.error).toBeDefined();

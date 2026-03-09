@@ -1,4 +1,11 @@
-import type { Film, Person, Planet, Species, Starship, Vehicle } from "@/types/swapi";
+import type {
+  Film,
+  Person,
+  Planet,
+  Species,
+  Starship,
+  Vehicle,
+} from "@/types/swapi";
 
 export const mockPerson: Person = {
   name: "Luke Skywalker",

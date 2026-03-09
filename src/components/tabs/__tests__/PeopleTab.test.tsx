@@ -14,7 +14,11 @@ const mockedUseSwapi = vi.mocked(useSwapi);
 describe("PeopleTab", () => {
   it("shows a spinner while loading", () => {
     mockedUseSwapi.mockReturnValue(
-      mockQueryResult<Person[]>({ isLoading: true, isPending: true, status: "pending" }),
+      mockQueryResult<Person[]>({
+        isLoading: true,
+        isPending: true,
+        status: "pending",
+      }),
     );
     renderWithProviders(<PeopleTab searchTerm="" />);
     expect(document.querySelector(".chakra-spinner")).toBeInTheDocument();
@@ -41,7 +45,11 @@ describe("PeopleTab", () => {
 
   it("renders a card for each person", () => {
     mockedUseSwapi.mockReturnValue(
-      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+      mockQueryResult<Person[]>({
+        data: mockPeople,
+        isSuccess: true,
+        status: "success",
+      }),
     );
     renderWithProviders(<PeopleTab searchTerm="" />);
     expect(screen.getByText("Luke Skywalker")).toBeInTheDocument();
@@ -50,7 +58,11 @@ describe("PeopleTab", () => {
 
   it("filters people by search term", () => {
     mockedUseSwapi.mockReturnValue(
-      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+      mockQueryResult<Person[]>({
+        data: mockPeople,
+        isSuccess: true,
+        status: "success",
+      }),
     );
     renderWithProviders(<PeopleTab searchTerm="luke" />);
     expect(screen.getByText("Luke Skywalker")).toBeInTheDocument();
@@ -59,7 +71,11 @@ describe("PeopleTab", () => {
 
   it("is case-insensitive when filtering", () => {
     mockedUseSwapi.mockReturnValue(
-      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+      mockQueryResult<Person[]>({
+        data: mockPeople,
+        isSuccess: true,
+        status: "success",
+      }),
     );
     renderWithProviders(<PeopleTab searchTerm="DARTH" />);
     expect(screen.getByText("Darth Vader")).toBeInTheDocument();
@@ -68,7 +84,11 @@ describe("PeopleTab", () => {
 
   it("shows no results message when search term matches nothing", () => {
     mockedUseSwapi.mockReturnValue(
-      mockQueryResult<Person[]>({ data: mockPeople, isSuccess: true, status: "success" }),
+      mockQueryResult<Person[]>({
+        data: mockPeople,
+        isSuccess: true,
+        status: "success",
+      }),
     );
     renderWithProviders(<PeopleTab searchTerm="zzznomatch" />);
     expect(screen.getByText(/no results for/i)).toBeInTheDocument();

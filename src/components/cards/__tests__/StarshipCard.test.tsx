@@ -19,13 +19,21 @@ describe("StarshipCard", () => {
 
   it("renders preview info with labels", () => {
     renderWithProviders(<StarshipCard starship={mockStarship} />);
-    expect(screen.getByText(/Model: YT-1300 light freighter/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Model: YT-1300 light freighter/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Class: Light freighter/)).toBeInTheDocument();
   });
 
   it("shows a spinner while related data is loading", async () => {
     const user = userEvent.setup();
-    mockedUseSwapiResources.mockReturnValue([mockQueryResult<Person>({ isLoading: true, isPending: true, status: "pending" })]);
+    mockedUseSwapiResources.mockReturnValue([
+      mockQueryResult<Person>({
+        isLoading: true,
+        isPending: true,
+        status: "pending",
+      }),
+    ]);
 
     renderWithProviders(<StarshipCard starship={mockStarship} />);
     await user.click(screen.getByText("Millennium Falcon"));
@@ -36,8 +44,20 @@ describe("StarshipCard", () => {
   it("shows related data when loaded", async () => {
     const user = userEvent.setup();
     mockedUseSwapiResources
-      .mockReturnValueOnce([mockQueryResult<Person>({ data: mockPerson, isSuccess: true, status: "success" })])
-      .mockReturnValueOnce([mockQueryResult<Film>({ data: mockFilm, isSuccess: true, status: "success" })]);
+      .mockReturnValueOnce([
+        mockQueryResult<Person>({
+          data: mockPerson,
+          isSuccess: true,
+          status: "success",
+        }),
+      ])
+      .mockReturnValueOnce([
+        mockQueryResult<Film>({
+          data: mockFilm,
+          isSuccess: true,
+          status: "success",
+        }),
+      ]);
 
     renderWithProviders(<StarshipCard starship={mockStarship} />);
     await user.click(screen.getByText("Millennium Falcon"));

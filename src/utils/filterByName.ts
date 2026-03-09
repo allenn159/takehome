@@ -1,6 +1,6 @@
 export function filterByName<T extends { name: string }>(
   items: T[],
-  searchTerm: string
+  searchTerm: string,
 ): T[] {
   if (!searchTerm.trim()) return items;
   const lower = searchTerm.toLowerCase();

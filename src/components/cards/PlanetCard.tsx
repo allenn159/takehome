@@ -16,21 +16,74 @@ function PlanetDetails({ planet }: { planet: Planet }) {
     residentResults.some((r) => r.isLoading) ||
     filmResults.some((r) => r.isLoading);
 
-  if (isLoading) return <Flex justify="center" py={4}><Spinner size="sm" /></Flex>;
+  if (isLoading)
+    return (
+      <Flex justify="center" py={4}>
+        <Spinner size="sm" />
+      </Flex>
+    );
 
-  const residentNames = residentResults.map((r) => r.data?.name).filter(Boolean).join(", ") || "None";
-  const filmTitles = filmResults.map((r) => r.data?.title).filter(Boolean).join(", ") || "None";
+  const residentNames =
+    residentResults
+      .map((r) => r.data?.name)
+      .filter(Boolean)
+      .join(", ") || "None";
+  const filmTitles =
+    filmResults
+      .map((r) => r.data?.title)
+      .filter(Boolean)
+      .join(", ") || "None";
 
   return (
     <Box mt={3} display="grid" gridTemplateColumns="1fr 1fr" gap={2}>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Population:</Text> {planet.population}</Text>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Diameter:</Text> {planet.diameter}km</Text>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Gravity:</Text> {planet.gravity}</Text>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Surface Water:</Text> {planet.surface_water}%</Text>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Rotation:</Text> {planet.rotation_period}h</Text>
-      <Text fontSize="sm"><Text as="span" fontWeight="medium">Orbital Period:</Text> {planet.orbital_period} days</Text>
-      <Text fontSize="sm" gridColumn="1 / -1"><Text as="span" fontWeight="medium">Residents:</Text> {residentNames}</Text>
-      <Text fontSize="sm" gridColumn="1 / -1"><Text as="span" fontWeight="medium">Films:</Text> {filmTitles}</Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Population:
+        </Text>{" "}
+        {planet.population}
+      </Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Diameter:
+        </Text>{" "}
+        {planet.diameter}km
+      </Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Gravity:
+        </Text>{" "}
+        {planet.gravity}
+      </Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Surface Water:
+        </Text>{" "}
+        {planet.surface_water}%
+      </Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Rotation:
+        </Text>{" "}
+        {planet.rotation_period}h
+      </Text>
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Orbital Period:
+        </Text>{" "}
+        {planet.orbital_period} days
+      </Text>
+      <Text fontSize="sm" gridColumn="1 / -1">
+        <Text as="span" fontWeight="medium">
+          Residents:
+        </Text>{" "}
+        {residentNames}
+      </Text>
+      <Text fontSize="sm" gridColumn="1 / -1">
+        <Text as="span" fontWeight="medium">
+          Films:
+        </Text>{" "}
+        {filmTitles}
+      </Text>
     </Box>
   );
 }
@@ -39,7 +92,10 @@ export function PlanetCard({ planet }: PlanetCardProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Collapsible.Root open={open} onOpenChange={(details) => setOpen(details.open)}>
+    <Collapsible.Root
+      open={open}
+      onOpenChange={(details) => setOpen(details.open)}
+    >
       <Box borderWidth="1px" borderRadius="md" p={4}>
         <Collapsible.Trigger width="100%" cursor="pointer">
           <Flex justify="space-between" align="center">

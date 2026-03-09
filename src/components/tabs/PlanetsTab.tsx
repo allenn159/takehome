@@ -12,18 +12,37 @@ interface PlanetsTabProps {
 export function PlanetsTab({ searchTerm }: PlanetsTabProps) {
   const { data, isLoading, error } = useSwapi<Planet>(SWAPI_URLS.planets);
 
-  if (isLoading) return <Flex justify="center" align="center" py={12}><Spinner /></Flex>;
-  if (error) return <Flex justify="center" align="center" py={12}><Text color="red.500">{error.message}</Text></Flex>;
-  if (!data) return <Flex justify="center" align="center" py={12}><Text color="fg.muted">No results available</Text></Flex>;
+  if (isLoading)
+    return (
+      <Flex justify="center" align="center" py={12}>
+        <Spinner />
+      </Flex>
+    );
+  if (error)
+    return (
+      <Flex justify="center" align="center" py={12}>
+        <Text color="red.500">{error.message}</Text>
+      </Flex>
+    );
+  if (!data)
+    return (
+      <Flex justify="center" align="center" py={12}>
+        <Text color="fg.muted">No results available</Text>
+      </Flex>
+    );
 
   const filtered = filterByName(data, searchTerm);
 
   return (
     <Stack mt={4} gap={3}>
       {filtered.length === 0 ? (
-        <Text color="fg.muted" textAlign="center" py={8}>No results for "{searchTerm}"</Text>
+        <Text color="fg.muted" textAlign="center" py={8}>
+          No results for "{searchTerm}"
+        </Text>
       ) : (
-        filtered.map((planet) => <PlanetCard key={planet.url} planet={planet} />)
+        filtered.map((planet) => (
+          <PlanetCard key={planet.url} planet={planet} />
+        ))
       )}
     </Stack>
   );

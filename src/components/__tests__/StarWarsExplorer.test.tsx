@@ -5,13 +5,19 @@ import { StarWarsExplorer } from "@/components/StarWarsExplorer";
 import { renderWithProviders } from "@/test/utils";
 
 vi.mock("@/components/tabs/PeopleTab", () => ({
-  PeopleTab: ({ searchTerm }: { searchTerm: string }) => <div>People Content {searchTerm}</div>,
+  PeopleTab: ({ searchTerm }: { searchTerm: string }) => (
+    <div>People Content {searchTerm}</div>
+  ),
 }));
 vi.mock("@/components/tabs/PlanetsTab", () => ({
-  PlanetsTab: ({ searchTerm }: { searchTerm: string }) => <div>Planets Content {searchTerm}</div>,
+  PlanetsTab: ({ searchTerm }: { searchTerm: string }) => (
+    <div>Planets Content {searchTerm}</div>
+  ),
 }));
 vi.mock("@/components/tabs/StarshipsTab", () => ({
-  StarshipsTab: ({ searchTerm }: { searchTerm: string }) => <div>Starships Content {searchTerm}</div>,
+  StarshipsTab: ({ searchTerm }: { searchTerm: string }) => (
+    <div>Starships Content {searchTerm}</div>
+  ),
 }));
 
 describe("StarWarsExplorer", () => {

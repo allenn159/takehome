@@ -96,29 +96,29 @@ function PersonDetails({ person }: { person: Person }) {
         </Text>{" "}
         {homeworld?.name ?? "—"}
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Species:
         </Text>{" "}
         {speciesNames}
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
+        <Text as="span" fontWeight="medium">
+          Films:
+        </Text>{" "}
+        {filmTitles}
+      </Text>
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Vehicles:
         </Text>{" "}
         {vehicleNames}
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Starships:
         </Text>{" "}
         {starshipNames}
-      </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
-        <Text as="span" fontWeight="medium">
-          Films:
-        </Text>{" "}
-        {filmTitles}
       </Text>
     </Box>
   );
@@ -145,7 +145,11 @@ export function PersonCard({ person }: PersonCardProps) {
                 Birth Year: {person.birth_year} · Gender: {person.gender}
               </Text>
             </Box>
-            {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+            {open ? (
+              <FiChevronUp aria-hidden="true" />
+            ) : (
+              <FiChevronDown aria-hidden="true" />
+            )}
           </Flex>
         </Collapsible.Trigger>
         <Collapsible.Content>

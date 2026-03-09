@@ -84,13 +84,13 @@ function StarshipDetails({ starship }: { starship: Starship }) {
         </Text>{" "}
         {starship.cargo_capacity}kg
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Pilots:
         </Text>{" "}
         {pilotNames}
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Films:
         </Text>{" "}

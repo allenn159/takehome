@@ -72,13 +72,13 @@ function PlanetDetails({ planet }: { planet: Planet }) {
         </Text>{" "}
         {planet.orbital_period} days
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Residents:
         </Text>{" "}
         {residentNames}
       </Text>
-      <Text fontSize="sm" gridColumn="1 / -1">
+      <Text fontSize="sm">
         <Text as="span" fontWeight="medium">
           Films:
         </Text>{" "}

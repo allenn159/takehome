@@ -65,6 +65,6 @@ TypeScript types were clean, reusable, and correctly matched across the hooks an
 # Areas for future improvement
 
 A few areas that could enhance the project would be adding skeleton loaders for a more polished loading experience rather than a simple spinner. It would also be interesting to add cross resource navigation. For example, if a person's home world is listed in
-their info card, clicking it could navigate directly to that planet's data rather than requiring the user to find it manually. This kind of linked navigation would make the explorer feel much more connected and intuitive.
+their info card, clicking it could navigate directly to that planet's data rather than requiring the user to find it manually. This kind of linked navigation would make the user feel much more connected and intuitive.
 
 Another improvement could be introducing dedicated resource pages, so clicking a card navigates to a full page with more detailed data about that resource rather than expanding inline. Additionally, expanding the filtering options beyond just search such as alphabetical sorting A-Z or Z-A and filtering by resource type would give users more control over how they explore the data.

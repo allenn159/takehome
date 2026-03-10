@@ -21,9 +21,24 @@ export function StarWarsExplorer() {
       }}
     >
       <Tabs.List>
-        <Tabs.Trigger value="people" _selected={{ color: "blue.500", fontWeight: "semibold" }}>People</Tabs.Trigger>
-        <Tabs.Trigger value="planets" _selected={{ color: "blue.500", fontWeight: "semibold" }}>Planets</Tabs.Trigger>
-        <Tabs.Trigger value="starships" _selected={{ color: "blue.500", fontWeight: "semibold" }}>Starships</Tabs.Trigger>
+        <Tabs.Trigger
+          value="people"
+          _selected={{ color: "blue.500", fontWeight: "semibold" }}
+        >
+          People
+        </Tabs.Trigger>
+        <Tabs.Trigger
+          value="planets"
+          _selected={{ color: "blue.500", fontWeight: "semibold" }}
+        >
+          Planets
+        </Tabs.Trigger>
+        <Tabs.Trigger
+          value="starships"
+          _selected={{ color: "blue.500", fontWeight: "semibold" }}
+        >
+          Starships
+        </Tabs.Trigger>
       </Tabs.List>
       <Input
         mt={4}

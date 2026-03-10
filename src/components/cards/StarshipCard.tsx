@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, Collapsible, Flex, Separator, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Collapsible,
+  Flex,
+  Separator,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResources } from "@/hooks/useSwapiResource";
 import type { Film, Person, Starship } from "@/types/swapi";
@@ -11,7 +18,13 @@ interface StarshipCardProps {
 function StatCell({ label, value }: { label: string; value: string }) {
   return (
     <Box>
-      <Text fontSize="2xs" color="fg.muted" fontWeight="medium" textTransform="uppercase" letterSpacing="wide">
+      <Text
+        fontSize="2xs"
+        color="fg.muted"
+        fontWeight="medium"
+        textTransform="uppercase"
+        letterSpacing="wide"
+      >
         {label}
       </Text>
       <Text fontSize="md">{value}</Text>
@@ -84,13 +97,19 @@ export function StarshipCard({ starship }: StarshipCardProps) {
         >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
-              <Text fontWeight="semibold" fontSize="lg">{starship.name}</Text>
+              <Text fontWeight="semibold" fontSize="lg">
+                {starship.name}
+              </Text>
               <Text fontSize="sm" color="fg.muted">
                 Model: {starship.model} · Class: {starship.starship_class}
               </Text>
             </Box>
             <Box color="fg.muted">
-              {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+              {open ? (
+                <FiChevronUp aria-hidden="true" />
+              ) : (
+                <FiChevronDown aria-hidden="true" />
+              )}
             </Box>
           </Flex>
         </Collapsible.Trigger>

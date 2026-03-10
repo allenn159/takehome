@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, Collapsible, Flex, Separator, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Collapsible,
+  Flex,
+  Separator,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResource, useSwapiResources } from "@/hooks/useSwapiResource";
 import type {
@@ -18,7 +25,13 @@ interface PersonCardProps {
 function StatCell({ label, value }: { label: string; value: string }) {
   return (
     <Box>
-      <Text fontSize="2xs" color="fg.muted" fontWeight="medium" textTransform="uppercase" letterSpacing="wide">
+      <Text
+        fontSize="2xs"
+        color="fg.muted"
+        fontWeight="medium"
+        textTransform="uppercase"
+        letterSpacing="wide"
+      >
         {label}
       </Text>
       <Text fontSize="md">{value}</Text>
@@ -108,7 +121,9 @@ export function PersonCard({ person }: PersonCardProps) {
         >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
-              <Text fontWeight="semibold" fontSize="lg">{person.name}</Text>
+              <Text fontWeight="semibold" fontSize="lg">
+                {person.name}
+              </Text>
               <Text fontSize="sm" color="fg.muted">
                 Birth Year: {person.birth_year} · Gender: {person.gender}
               </Text>

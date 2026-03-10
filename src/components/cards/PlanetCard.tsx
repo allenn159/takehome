@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, Collapsible, Flex, Separator, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Collapsible,
+  Flex,
+  Separator,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResources } from "@/hooks/useSwapiResource";
 import type { Film, Person, Planet } from "@/types/swapi";
@@ -11,7 +18,13 @@ interface PlanetCardProps {
 function StatCell({ label, value }: { label: string; value: string }) {
   return (
     <Box>
-      <Text fontSize="2xs" color="fg.muted" fontWeight="medium" textTransform="uppercase" letterSpacing="wide">
+      <Text
+        fontSize="2xs"
+        color="fg.muted"
+        fontWeight="medium"
+        textTransform="uppercase"
+        letterSpacing="wide"
+      >
         {label}
       </Text>
       <Text fontSize="md">{value}</Text>
@@ -52,7 +65,10 @@ function PlanetDetails({ planet }: { planet: Planet }) {
       <StatCell label="Gravity" value={planet.gravity} />
       <StatCell label="Surface Water" value={`${planet.surface_water}%`} />
       <StatCell label="Rotation" value={`${planet.rotation_period}h`} />
-      <StatCell label="Orbital Period" value={`${planet.orbital_period} days`} />
+      <StatCell
+        label="Orbital Period"
+        value={`${planet.orbital_period} days`}
+      />
       <StatCell label="Residents" value={residentNames} />
       <StatCell label="Films" value={filmTitles} />
     </Box>
@@ -82,13 +98,19 @@ export function PlanetCard({ planet }: PlanetCardProps) {
         >
           <Flex justify="space-between" align="center">
             <Box textAlign="left">
-              <Text fontWeight="semibold" fontSize="lg">{planet.name}</Text>
+              <Text fontWeight="semibold" fontSize="lg">
+                {planet.name}
+              </Text>
               <Text fontSize="sm" color="fg.muted">
                 Climate: {planet.climate} · Terrain: {planet.terrain}
               </Text>
             </Box>
             <Box color="fg.muted">
-              {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+              {open ? (
+                <FiChevronUp aria-hidden="true" />
+              ) : (
+                <FiChevronDown aria-hidden="true" />
+              )}
             </Box>
           </Flex>
         </Collapsible.Trigger>

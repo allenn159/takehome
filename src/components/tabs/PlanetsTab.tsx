@@ -14,19 +14,38 @@ export function PlanetsTab({ searchTerm }: PlanetsTabProps) {
 
   if (isLoading)
     return (
-      <Flex justify="center" align="center" py={12} role="status" aria-live="polite" aria-label="Loading planets">
+      <Flex
+        justify="center"
+        align="center"
+        py={12}
+        role="status"
+        aria-live="polite"
+        aria-label="Loading planets"
+      >
         <Spinner aria-hidden="true" />
       </Flex>
     );
   if (error)
     return (
-      <Flex justify="center" align="center" py={12} role="alert" aria-live="assertive">
+      <Flex
+        justify="center"
+        align="center"
+        py={12}
+        role="alert"
+        aria-live="assertive"
+      >
         <Text color="red.500">{error.message}</Text>
       </Flex>
     );
   if (!data)
     return (
-      <Flex justify="center" align="center" py={12} role="status" aria-live="polite">
+      <Flex
+        justify="center"
+        align="center"
+        py={12}
+        role="status"
+        aria-live="polite"
+      >
         <Text color="fg.muted">No results available</Text>
       </Flex>
     );

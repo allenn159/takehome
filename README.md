@@ -47,7 +47,7 @@ For this project, the only AI tool I used was Claude Code via the terminal.
 # 2. Specific examples of how AI helped you — code generation, debugging, architecture decisions, writing tests, etc.
 
 Claude Code was a vital piece of my workflow when working on this assignment. From the very beginning when I was creating the project with all the dependencies, and working on each requirement that was part of the assignment, I would initiate the process with Claude
-and then make any changes that I felt were appropriate. It was really useful for scaffolding boilerplate quickly, like generating TypeScript types to match the Star Wars API response shapes and setting up React Query fetchers, so I could stay focused on the higher level architecture decisions. 
+and then make any changes that I felt were appropriate. It was really useful for scaffolding boilerplate quickly, like generating TypeScript types to match the Star Wars API response shapes and setting up React Query fetchers, so I could stay focused on the higher level architecture decisions.
 
 # 3. Where you pushed back on or corrected AI output, and why
 
@@ -55,16 +55,16 @@ There was one key moment where I really had to push back on the result generated
 
 # 4. How AI shaped your overall approach or development speed
 
-AI has significantly accelerated my development speed. Instead of context switching to look up syntax or boilerplate, I could stay focused on the actual implementation and logic. This has shifted my overall approach because I can spend more time thinking about architecture and design decisions rather. I really like using Claude Code via the terminal in the directory because it can have complete context of the files, so it adds another level of efficiency. 
+AI has significantly accelerated my development speed. Instead of context switching to look up syntax or boilerplate, I could stay focused on the actual implementation and logic. This has shifted my overall approach because I can spend more time thinking about architecture and design decisions. I really like using Claude Code via the terminal in the directory because it can have complete context of the files, so it adds another level of efficiency.
 
 # Any challenges faced and how you resolved them
 
-The biggest challenges were around the initial scaffolding of the project, where I ran into some friction getting everything configured correctly. For example, Chakra UI setup required referencing the docs directly to resolve. Another challenge was making sure the 
+The biggest challenges were around the initial scaffolding of the project, where I ran into some friction getting everything configured correctly. For example, Chakra UI setup required referencing the docs directly to resolve. Another challenge was making sure the
 TypeScript types were clean, reusable, and correctly matched across the hooks and API layer. Once those foundations were solid though, the rest of the implementation came together pretty smoothly.
 
 # Areas for future improvement
 
-A few areas that could enhance the project would be adding skeleton loaders for a more polished loading experience rather than a simple spinner. It would also be interesting to add cross resource navigation. For example, if a person's home world is listed in 
-their info card, clicking it could navigate directly to that planet's data rather than requiring the user to find it manually. This kind of linked navigation would make the explorer feel much more connected and intuitive. 
+A few areas that could enhance the project would be adding skeleton loaders for a more polished loading experience rather than a simple spinner. It would also be interesting to add cross resource navigation. For example, if a person's home world is listed in
+their info card, clicking it could navigate directly to that planet's data rather than requiring the user to find it manually. This kind of linked navigation would make the explorer feel much more connected and intuitive.
 
 Another improvement could be introducing dedicated resource pages, so clicking a card navigates to a full page with more detailed data about that resource rather than expanding inline. Additionally, expanding the filtering options beyond just search such as alphabetical sorting A-Z or Z-A and filtering by resource type would give users more control over how they explore the data.

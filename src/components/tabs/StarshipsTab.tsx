@@ -34,7 +34,7 @@ export function StarshipsTab({ searchTerm }: StarshipsTabProps) {
   const filtered = filterByName(data, searchTerm);
 
   return (
-    <Stack mt={4} gap={3} aria-live="polite">
+    <Stack mb={2} gap={3} aria-live="polite">
       {filtered.length === 0 ? (
         <Text color="fg.muted" textAlign="center" py={8} role="status">
           No results for "{searchTerm}"

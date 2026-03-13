@@ -1,35 +1,19 @@
 import { useState } from "react";
 import {
-  Box,
   Collapsible,
   Flex,
   Separator,
   Spinner,
+  Box,
   Text,
 } from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useSwapiResources } from "@/hooks/useSwapiResource";
+import { StatCell } from "./StatCell";
 import type { Film, Person, Starship } from "@/types/swapi";
 
 interface StarshipCardProps {
   starship: Starship;
-}
-
-function StatCell({ label, value }: { label: string; value: string }) {
-  return (
-    <Box>
-      <Text
-        fontSize="2xs"
-        color="fg.muted"
-        fontWeight="medium"
-        textTransform="uppercase"
-        letterSpacing="wide"
-      >
-        {label}
-      </Text>
-      <Text fontSize="md">{value}</Text>
-    </Box>
-  );
 }
 
 function StarshipDetails({ starship }: { starship: Starship }) {

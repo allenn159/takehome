@@ -77,13 +77,8 @@ describe("ThemeContext", () => {
   });
 
   it("throws when useThemeContext is used outside of ThemeProvider", () => {
-    const consoleError = console.error;
-    console.error = () => {};
-
     expect(() => render(<TestConsumer />)).toThrow(
       "useThemeContext must be used within a ThemeProvider",
     );
-
-    console.error = consoleError;
   });
 });

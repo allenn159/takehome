@@ -23,7 +23,7 @@ describe("useSwapi", () => {
   });
 
   it("returns data on successful fetch", async () => {
-    mockedFetch.mockResolvedValue(mockPeople as never);
+    mockedFetch.mockResolvedValue(mockPeople);
 
     const { result } = renderHook(() => useSwapi(SWAPI_URLS.people), {
       wrapper: createQueryWrapper(),

@@ -23,7 +23,7 @@ describe("useSwapiResource", () => {
   });
 
   it("returns data on successful fetch", async () => {
-    mockedFetch.mockResolvedValue(mockPlanet as never);
+    mockedFetch.mockResolvedValue(mockPlanet);
 
     const { result } = renderHook(
       () => useSwapiResource("https://swapi.info/api/planets/1/"),
